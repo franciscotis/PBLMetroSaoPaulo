@@ -21,6 +21,16 @@ import br.uefs.ecomp.PBLMetroSaoPaulo.util.Vertice;
  * @author Abel Ramalho Galv�o
  */
 public class Controller {
+	
+	private static Controller instance;
+	
+	private Controller() {}
+	
+	public static Controller getInstance() {
+		if(instance == null)
+			instance = new Controller();
+		return instance;
+	}
 
     Grafo1 grafo = new Grafo1();
 

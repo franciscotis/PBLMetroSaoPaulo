@@ -5,14 +5,15 @@
  */
 package br.uefs.ecomp.PBLMetroSaoPaulo.view;
 
-import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
-import br.uefs.ecomp.PBLMetroSaoPaulo.util.Vertice;
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
+
+import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
+import br.uefs.ecomp.PBLMetroSaoPaulo.util.Vertice;
 
 
 /**
@@ -21,7 +22,11 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  */
 
 public class MetroSaoPaulo extends JFrame {
-          Controller cont = new Controller();
+          /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1130972656959504196L;
+		Controller cont = Controller.getInstance();
         
           
    

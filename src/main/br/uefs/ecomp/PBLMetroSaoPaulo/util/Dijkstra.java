@@ -9,7 +9,7 @@ import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
 
 public class Dijkstra {
 
-	Controller cont = new Controller();
+	Controller cont = Controller.getInstance();
 	
 	public double menorCaminho(Vertice a){
 		a.SetMindistance(0.0);
