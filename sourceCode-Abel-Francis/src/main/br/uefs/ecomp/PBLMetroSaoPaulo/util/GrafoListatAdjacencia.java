@@ -5,6 +5,9 @@
  */
 package br.uefs.ecomp.PBLMetroSaoPaulo.util;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 /**
  *
  * @author francisco
@@ -20,7 +23,35 @@ public class GrafoListatAdjacencia implements IGraph {
     }
 
     public Vertice[] getVertice() {
-        return this.vertices;
+        return Arrays.copyOf(this.vertices, this.next);
+    }
+    
+    public Iterable<Vertice> vertexIterator(){
+    	return new Iterable<Vertice>(){
+
+			@Override
+			public Iterator<Vertice> iterator() {
+				return new Iterator<Vertice>(){
+
+		    		private int myNext;
+		    		
+		    		{
+		    			this.myNext = 0;
+		    		}
+		    		
+					@Override
+					public boolean hasNext() {
+						return vertices[myNext]!=null;
+					}
+
+					@Override
+					public Vertice next() {
+						return vertices[myNext++];
+					}
+				};
+			}
+    		
+    	};
     }
 
     @Override
@@ -28,10 +59,10 @@ public class GrafoListatAdjacencia implements IGraph {
         if (this.next >= this.vertices.length) {
             aumentaVetor();
         }
-        if (!procuraVertice(key)) {
+       if (!procuraVertice(key)) {
                 this.vertices[this.next] = key;
                 this.next++;
-            }
+           }
         
     }
 
@@ -43,10 +74,10 @@ public class GrafoListatAdjacencia implements IGraph {
     }
 
     public boolean procuraVertice(Vertice key) {
-        for (Vertice vertice : vertices) {
-            if (key.equals(vertice)) {
-                return true;
-            }
+        for(int i = 0 ; i<this.next+1;i++){
+        	Vertice amb = vertices[i];
+        	if(key.equals(amb))
+        		return true;
         }
         return false;
     }
