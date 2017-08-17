@@ -1,32 +1,19 @@
 package br.uefs.ecomp.PBLMetroSaoPaulo.view;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
 
 import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
 import br.uefs.ecomp.PBLMetroSaoPaulo.util.Vertice;
 
-public class SaoPauloGUI extends JFrame{
-	 /**
-	 * 
-	 */
-	private static final long serialVersionUID = -3680689318006793620L;
-	
-	public JLabel mSaoPaulo;
-	    public JLabel pesquisar;
-	    public JTextField texto;
+public class SaoPauloGUI {
+
 	private JFrame frame;
-	private JButton buscar;
 
 	/**
 	 * Create the application.
@@ -39,45 +26,46 @@ public class SaoPauloGUI extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setTitle("Metrô de São Paulo");
-        setSize(900,800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        Icon mapa = new ImageIcon("mapa.jpg");
-        mSaoPaulo=new JLabel("METRÔ DE SÃO PAULO", mapa, SwingConstants.LEFT);
-        mSaoPaulo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        mSaoPaulo.setHorizontalTextPosition(SwingConstants.CENTER);
-        mSaoPaulo.setVerticalTextPosition(SwingConstants.BOTTOM );
-        
-        mSaoPaulo.setSize(890, 700);
-        mSaoPaulo.setLocation(751,182);
-        add(mSaoPaulo);
-        
-        setLayout(new FlowLayout());
-        
-        Vertice[] itens = Controller.getInstance().getVertices();
-        String nomes[] = new String[itens.length];
-        
-        for(int i = 0 ; i<itens.length;i++){
-        Vertice ver = itens[i];
-        nomes[i] = ver.getNome();
-        }
-        
-        JComboBox<String> entrada = new JComboBox<String>(nomes);
+		setFrame(new JFrame());
+		this.frame.getContentPane().setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(41, 24, 345, 120);
+		JLabel lblSubwaymap = new JLabel();
+		lblSubwaymap.setIcon(new ImageIcon("mapa.jpg"));
+		scrollPane.setViewportView(lblSubwaymap);
+		frame.getContentPane().add(scrollPane);
+		
+		JButton btnTraarRota = new JButton("Tra\u00E7ar Rota");
+		btnTraarRota.setBounds(237, 227, 135, 23);
+		frame.getContentPane().add(btnTraarRota);
+		
+		JComboBox<Vertice> EstacoesOrigemBox = new JComboBox<Vertice>();
+		EstacoesOrigemBox.setModel(new DefaultComboBoxModel<>(Controller.getInstance().getVertices()));
+		EstacoesOrigemBox.setBounds(41, 168, 126, 23);
+		frame.getContentPane().add(EstacoesOrigemBox);
+		
+		JComboBox<Vertice> EstacoesDestinoBox = new JComboBox<Vertice>();
+		EstacoesDestinoBox.setModel(new DefaultComboBoxModel<>(Controller.getInstance().getVertices()));
+		EstacoesDestinoBox.setBounds(260, 168, 126, 23);
+		frame.getContentPane().add(EstacoesDestinoBox);
+		
+		JLabel lblOrigem = new JLabel("Origem:");
+		lblOrigem.setBounds(41, 155, 46, 14);
+		frame.getContentPane().add(lblOrigem);
+		
+		JLabel lblDestino = new JLabel("Destino:");
+		lblDestino.setBounds(259, 155, 46, 14);
+		frame.getContentPane().add(lblDestino);
+		getFrame().setBounds(100, 100, 450, 300);
+		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 
-        add(entrada);
-        entrada.setBounds(30, 10,70, 20);
-        
-        pesquisar = new JLabel("Estação:", SwingConstants.CENTER);
-        pesquisar.setHorizontalTextPosition( SwingConstants.CENTER);
-        pesquisar.setBounds(30, 5, 70, 20);
-        add(pesquisar);
-        
-        texto = new JTextField(SwingConstants.LEFT);
-        texto.setBounds(300, 270, 2500, 250);
-        add(texto);
-        
-        buscar = new JButton("Buscar");
-        add(buscar);
-}
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
 }

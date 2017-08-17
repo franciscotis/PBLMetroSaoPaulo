@@ -50,8 +50,9 @@ public class Controller {
 			do {				
 				if ((linha != null)) {
 					if((linha.charAt(0)!='#')) {
-						String[] itens = linha.split(",");
+						String[] itens = linha.split(",|,\\s");
 						float peso = Float.valueOf(itens[2]);
+
 						Vertice addedFirst = new Vertice(itens[0], 0, 0);
 						Vertice addedLast = new Vertice(itens[0], 0, 0);
 						grafo.addVertex(addedFirst);
@@ -74,15 +75,15 @@ public class Controller {
 		boolean a = false;
 		FileReader arquivo2 = new FileReader("Coordenadas.txt");
 		BufferedReader br2 = new BufferedReader(arquivo2);
-		String linha2 = "";
+		String linha2 = null;
 		try {
 			do {				
 				if ((linha2 != null)) {
 					linha2 = br2.readLine();
-					String[] itens2 = linha2.split(",");
+					String[] itens2 = linha2.split(",|,\\s");
 					int[] cord = {Integer.parseInt(itens2[1]), Integer.parseInt(itens2[2])};
 					
-					for(Vertice busca : grafo.vertexIterator()) {
+					for(Vertice busca : grafo.getVertice()) {
 						if(busca.nome.equals(itens2[0])) {
 							busca.setX(cord[0]);
 							busca.setY(cord[1]);
