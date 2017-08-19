@@ -21,13 +21,14 @@ import br.uefs.ecomp.PBLMetroSaoPaulo.util.Vertice;
  * @author Abel Ramalho Galvï¿½o
  */
 public class Controller {
-	
+
 	private static Controller instance;
-	
-	private Controller() {}
-	
+
+	private Controller() {
+	}
+
 	public static Controller getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new Controller();
 		return instance;
 	}
@@ -37,7 +38,8 @@ public class Controller {
 	/**
 	 * MÃ©todo de ler no arquivo e inserir.
 	 *
-	 * @param nome - String
+	 * @param nome
+	 *            - String
 	 * @return boolean - true caso leia no arquivo e insira com sucesso no grafo
 	 * @throws java.io.IOException
 	 */
@@ -47,9 +49,9 @@ public class Controller {
 		BufferedReader br = new BufferedReader(arquivo);
 		String linha = null;
 		try {
-			do {				
+			do {
 				if ((linha != null)) {
-					if((linha.charAt(0)!='#')) {
+					if ((linha.charAt(0) != '#')) {
 						String[] itens = linha.split(",");
 						float peso = Float.valueOf(itens[2]);
 						Vertice addedFirst = new Vertice(itens[0], 0, 0);
@@ -69,27 +71,27 @@ public class Controller {
 		}
 		return a;
 	}
-	
+
 	public boolean lerArquivoCoordenadas() throws IOException {
 		boolean a = false;
 		FileReader arquivo2 = new FileReader("Coordenadas.txt");
 		BufferedReader br2 = new BufferedReader(arquivo2);
 		String linha2 = "";
 		try {
-			do {				
+			do {
 				if ((linha2 != null)) {
 					linha2 = br2.readLine();
 					String[] itens2 = linha2.split(",");
-					int[] cord = {Integer.parseInt(itens2[1]), Integer.parseInt(itens2[2])};
-					
-					for(Vertice busca : grafo.vertexIterator()) {
-						if(busca.nome.equals(itens2[0])) {
+					int[] cord = { Integer.parseInt(itens2[1]), Integer.parseInt(itens2[2]) };
+
+					for (Vertice busca : grafo.vertexIterator()) {
+						if (busca.nome.equals(itens2[0])) {
 							busca.setX(cord[0]);
 							busca.setY(cord[1]);
 							break;
 						}
 					}
-					
+
 				}
 				linha2 = br2.readLine();
 			} while (linha2 != null);
@@ -115,11 +117,11 @@ public class Controller {
 			if (hh.getNome().equals("Luz")) {
 				ju = hh;
 			}
-			if (hh.getNome().equals("Brás")) {
+			if (hh.getNome().equals("Tucuruvi")) {
 				ka = hh;
 			}
 		}
-		List<Vertice> gg = am.minCaminho(ju, ka);
+		List<Vertice> gg = am.menorCaminho(ju, ka);
 		for (Vertice l : gg) {
 			System.out.println(l.getNome());
 		}
@@ -143,25 +145,26 @@ public class Controller {
 		return this.grafo.getVertice()[0];
 	}
 
-	/////////////////////QUICKSORT///////////////////////////////////
-	ArrayList<Vertice> names; //Array do tipo Produto
-	int length; //atributo que representa o tamanho
+	///////////////////// QUICKSORT///////////////////////////////////
+	ArrayList<Vertice> names; // Array do tipo Produto
+	int length; // atributo que representa o tamanho
 
-	public void sort(ArrayList<Vertice> array) { //Método que vai realizar a ordenação
-		if (array == null || array.size() == 0) { //Se o array estiver vazio 
-			return; //Não faz nada
+	public void sort(ArrayList<Vertice> array) { // Método que vai realizar a ordenação
+		if (array == null || array.size() == 0) { // Se o array estiver vazio
+			return; // Não faz nada
 		}
-		this.names = array; //Caso contrario 
+		this.names = array; // Caso contrario
 		this.length = array.size();
-		quickSort(0, length - 1); //Realiza a ordenação
+		quickSort(0, length - 1); // Realiza a ordenação
 	}
 
-	void quickSort(int lowerIndex, int higherIndex) { //Metodo que irá realizar a ordenação
+	void quickSort(int lowerIndex, int higherIndex) { // Metodo que irá realizar a ordenação
 		int i = lowerIndex;
 		int j = higherIndex;
 		Vertice pivot = this.names.get(lowerIndex + (higherIndex - lowerIndex) / 2);
-		//Escolhe um elemento qualquer da lista
-		//Todos os elementos antes do pivô são menores que ele e os após a ele são maiores que ele
+		// Escolhe um elemento qualquer da lista
+		// Todos os elementos antes do pivô são menores que ele e os após a ele são
+		// maiores que ele
 		while (i <= j) {
 			while (this.names.get(i).getNome().compareToIgnoreCase(pivot.getNome()) < 0) {
 				i++;
@@ -177,7 +180,8 @@ public class Controller {
 				j--;
 			}
 		}
-		//de forma recursiva ele vai ordenando, até que o pivô esteja realmente no meio do array
+		// de forma recursiva ele vai ordenando, até que o pivô esteja realmente no meio
+		// do array
 		if (lowerIndex < j) {
 			quickSort(lowerIndex, j);
 		}
@@ -186,12 +190,12 @@ public class Controller {
 		}
 	}
 
-	void exchangeNames(int i, int j) { //Método que faz a troca dos nomes
+	void exchangeNames(int i, int j) { // Método que faz a troca dos nomes
 		String temp = this.names.get(i).getNome();
 		this.names.get(i).setNome(this.names.get(j).getNome());
 		this.names.get(j).setNome(temp);
 	}
-	
+
 	public Vertice[] getVertices() {
 		return this.grafo.getVertice();
 	}

@@ -14,15 +14,14 @@ import javax.swing.JTextField;
  *
  * @author User
  */
-public class Rotulo extends JFrame{
-    public JLabel mSaoPaulo;
-    public JLabel pesquisar;
-    public JTextField texto;
-    private JButton buscar;
-    
-    public Rotulo() {
-        
-    }
-	
-        
+public class Rotulo extends JFrame {
+	public JLabel mSaoPaulo;
+	public JLabel pesquisar;
+	public JTextField texto;
+	private JButton buscar;
+
+	public Rotulo() {
+
+	}
+
 }

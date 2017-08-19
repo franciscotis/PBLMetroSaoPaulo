@@ -10,31 +10,28 @@ package br.uefs.ecomp.PBLMetroSaoPaulo.util;
  * @author francisco
  */
 public class Aresta {
-    Vertice v1;
-    float peso;
+	Vertice v1;
+	float peso;
 
-    
- public Aresta(Vertice v1, float peso){
- this.v1 = v1;
- this.peso = peso;
- }
-    public Vertice getV1() {
-        return v1;
-    }
-    
+	public Aresta(Vertice v1, float peso) {
+		this.v1 = v1;
+		this.peso = peso;
+	}
 
-    public void setV1(Vertice v1) {
-        this.v1 = v1;
-    }
+	public Vertice getV1() {
+		return v1;
+	}
 
-    public float getPeso() {
-        return peso;
-    }
+	public void setV1(Vertice v1) {
+		this.v1 = v1;
+	}
 
-    public void setPeso(int peso) {
-        this.peso = peso;
-    }
-    
-    
-    
+	public float getPeso() {
+		return peso;
+	}
+
+	public void setPeso(int peso) {
+		this.peso = peso;
+	}
+
 }

@@ -10,5 +10,5 @@ package br.uefs.ecomp.PBLMetroSaoPaulo.view;
  * @author ftiti
  */
 class Vertices {
-    
+
 }

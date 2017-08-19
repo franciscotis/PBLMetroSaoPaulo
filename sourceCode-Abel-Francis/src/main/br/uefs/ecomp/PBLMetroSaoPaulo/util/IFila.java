@@ -1,15 +1,14 @@
 package br.uefs.ecomp.PBLMetroSaoPaulo.util;
 
-
 public interface IFila {
-  
-    public boolean estaVazia();
 
-    public int obterTamanho();
+	public boolean estaVazia();
 
-    public void inserirFinal(Object o);
+	public int obterTamanho();
 
-    public Object removerInicio();
+	public void inserirFinal(Object o);
 
-    public Object recuperarInicio();        
+	public Object removerInicio();
+
+	public Object recuperarInicio();
 }
