@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package br.uefs.ecomp.PBLMetroSaoPaulo.view;
-
+import javax.swing.JFrame;
 /**
  *
  * @author ftiti
  */
-class Vertices {
+public class Eventos extends JFrame{
     
 }

@@ -14,11 +14,11 @@ public class ProgramMain {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		// new MouseTracker().start();
+		//new MouseTracker().start();
 		try {
 			Controller.getInstance().lerNoArquivoEInsere("MapaMetro.txt");
 			Controller.getInstance().lerArquivoCoordenadas();
-
+		      
 		} catch (IOException ex) {
 			Logger.getLogger(MetroSaoPaulo.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -27,6 +27,8 @@ public class ProgramMain {
 				try {
 					SaoPauloGUI window = new SaoPauloGUI();
 					window.setVisible(true);
+                                        Rotulo window2 = new Rotulo();
+                                        window2.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

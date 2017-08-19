@@ -10,7 +10,7 @@ import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
 public class Dijkstra {
 
 	Controller cont = Controller.getInstance();
-
+	
 	private double menorCaminho(Vertice a) {
 		a.SetMindistance(0.0);
 		a.setAnt(null);
@@ -20,6 +20,7 @@ public class Dijkstra {
 		while (!verticeQueue.isEmpty()) {
 			Vertice u = verticeQueue.poll();
 			for (Aresta e : u.getAresta()) {
+                            if(e!=null){
 				Vertice v = e.getV1();
 				double peso = e.getPeso();
 				distanciaAte = u.GetMinDistance() + peso;
@@ -30,6 +31,7 @@ public class Dijkstra {
 					verticeQueue.add(v);
 
 				}
+                        }
 			}
 
 		}
@@ -47,5 +49,7 @@ public class Dijkstra {
 		Collections.reverse(b);
 		return b.contains(origem) ? b : null;
 	}
+	
+	
 
 }

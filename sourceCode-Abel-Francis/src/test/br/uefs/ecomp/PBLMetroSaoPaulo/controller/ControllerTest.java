@@ -8,14 +8,14 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 public class ControllerTest extends TestCase {
-
+	
 	private Controller testController;
-
+	
 	@Before
 	public void setUp() {
 		this.testController = Controller.getInstance();
 	}
-
+	
 	@Test
 	public void testeLerNoArquivoEInsere() {
 		try {
@@ -25,9 +25,5 @@ public class ControllerTest extends TestCase {
 			assertFalse("ERRO", false);
 			e.printStackTrace();
 		}
-	}
-	
-	public void testDijkstra() {
-		this.testController.imprimir();
 	}
 }
