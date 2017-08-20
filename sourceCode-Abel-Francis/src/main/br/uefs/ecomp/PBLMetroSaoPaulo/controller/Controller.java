@@ -63,7 +63,6 @@ public class Controller {
 						grafo.addVertex(addedLast);
 						grafo.addEdge(addedFirst, addedLast, peso);
                                                 
-                                                
 					}
 				}
 				linha = br.readLine();
@@ -130,9 +129,14 @@ public class Controller {
 		return null;
 	}
 
-	public Vertice getone() {
-		return this.grafo.getVertice()[0];
-	}
+        public Vertice getVertex(String vert){
+        for(int i = 0 ; i < this.getVertices().length ; i++){
+            Vertice am = this.getVertices()[i];
+            if(am.getNome().equals(vert))
+                return am;
+        }
+        return null;
+        }
 
         public Hashtable<String, Point> getPoints(){	/*retorna a hash de pontos*/
 		return this.points;

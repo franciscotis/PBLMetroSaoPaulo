@@ -18,6 +18,7 @@ import br.uefs.ecomp.PBLMetroSaoPaulo.util.*;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.RadioButton;
 import javax.swing.ButtonGroup;
@@ -36,6 +37,7 @@ public class SaoPauloGUI extends JFrame implements ActionListener{
 	private JFrame frame;
 	private JButton buscar;
         String a,b;
+        JComboBox<String> entrada,saida;
 
 	/**
 	 * Create the application.
@@ -60,19 +62,18 @@ public class SaoPauloGUI extends JFrame implements ActionListener{
         Vertice[] itens = Controller.getInstance().getVertices();
         String nomes[] = new String[itens.length];
         
-        for(int i = 0 ; i<itens.length;i++){
+        for(int i = 0 ; i<nomes.length;i++){
         Vertice ver = itens[i];
         nomes[i] = ver.getNome();
         }
         
-        JComboBox<String> entrada = new JComboBox<String>(nomes);
-        JComboBox<String> saida = new JComboBox<String>(nomes);
+        entrada = new JComboBox<String>(nomes);
+        saida = new JComboBox<String>(nomes);
         JButton enviar= new JButton("Traçar rota");
         add(entrada);
         add(saida);
         add(enviar);
-         a = (String) entrada.getSelectedItem();
-         b = (String) saida.getSelectedItem();
+         
         enviar.addActionListener(this);
 
 }
@@ -80,21 +81,18 @@ public class SaoPauloGUI extends JFrame implements ActionListener{
         @Override
     public void actionPerformed(ActionEvent ae) {
         Dijkstra dequistra = new Dijkstra();
-        Vertice n = null;
-        Vertice j = null;
-        for(Vertice v: Controller.getInstance().getVertices()){
-            if(v!=null){
-            if(v.getNome().equals(a))
-                n = v;
-            if(v.getNome().equals(b))
-                j = v;
+        a = (String) entrada.getSelectedItem();
+        b = (String) saida.getSelectedItem();
+        Vertice n = Controller.getInstance().getVertex(a);
+        Vertice j = Controller.getInstance().getVertex(b);
+        
+        List km = dequistra.menorCaminho(n,j);
+        Vertice k = j;
+        for(int i = 0 ; i < 10 ; i ++){
+            if(k!=null){
+            System.out.println(k.getNome());
+            k = k.getAnt();
             }
-            else
-                break;
-        }
-        List a = dequistra.menorCaminho(n, j);
-        for(int i =0;i<a.size();i++){
-            System.out.println(a.get(i));
         }
         
     }

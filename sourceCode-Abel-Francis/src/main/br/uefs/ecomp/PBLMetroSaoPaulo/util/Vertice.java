@@ -100,12 +100,13 @@ public class Vertice {
 		this.nome = nome;
 	}
    
-	public boolean procuraAdjacente(Vertice v2){
-        for(Vertice k : adjacentes){
-            while(k!=null){
-         if(k.equals(v2))
-             return true;
-        }
+	public boolean procuraAdjacente(String v2){
+        for(int i = 0 ; i<this.next;i++){
+        Vertice amb =  this.adjacentes[i];
+        if(amb!=null){
+        if(amb.getNome().equals(v2))
+            return true;
+        }        
         }
         return false;
         }
@@ -113,7 +114,7 @@ public class Vertice {
 	public void addAdjacente(Vertice v2){
 		if(t>=adjacentes.length){
 			aumentaVetor2();}
-                 if(!procuraAdjacente(v2)){
+                 if(!procuraAdjacente(v2.getNome())){
 			this.adjacentes[this.t] = v2;
 			t++;
                 }
@@ -127,24 +128,21 @@ public class Vertice {
 		if(this.next>=aresta.length){
 			aumentaVetor();}
                 
-                       if(!procuraAresta(v2)){
-			this.aresta[this.next] = new Aresta(v2,peso);
+                       if(!procuraAresta(v2.getNome())){
+                        Aresta ad = new Aresta(v2,peso);
+                        this.aresta[this.next] = ad;
 			this.next++;
 			addAdjacente(v2);
-			v2.aresta[v2.next++] = new Aresta(this,peso);
-                        v2.addAdjacente(this);
-                        
-                        }
+                      }
 	}
         
-        public boolean procuraAresta(Vertice v2){
-        for(Aresta k : aresta){
-            while(k!=null){
-        if(k.getV1().equals(v2))
+        public boolean procuraAresta(String v2){
+        for(int i = 0 ; i<this.next;i++){
+        Aresta amb =  this.aresta[i];
+        if(amb.getV1().getNome().equals(v2))
             return true;
-        }
-        
-        }
+        }        
+
         return false;
         }
 	

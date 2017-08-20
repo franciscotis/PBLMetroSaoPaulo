@@ -7,18 +7,19 @@ package br.uefs.ecomp.PBLMetroSaoPaulo.util;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author francisco
  */
 public class GrafoListatAdjacencia implements IGraph {
-
     private Vertice[] vertices;
     private int next;
     
     public GrafoListatAdjacencia() {
-        this.vertices = new Vertice[100];
+        this.vertices = new Vertice[50];
         this.next = 0;
     }
 
@@ -54,12 +55,14 @@ public class GrafoListatAdjacencia implements IGraph {
     	};
     }
 
+    
+    
     @Override
     public void addVertex(Vertice key) {
         if (this.next >= this.vertices.length) {
             aumentaVetor();
         }
-       if (!procuraVertice(key)) {
+       if (!procuraVertice(key.getNome())) {
                 this.vertices[this.next] = key;
                 this.next++;
            }
@@ -73,13 +76,14 @@ public class GrafoListatAdjacencia implements IGraph {
 
     }
 
-    public boolean procuraVertice(Vertice key) {
-        for(Vertice amb : vertices) {
-            if(amb!=null){
-        	if(amb.equals(key))
-        		return true;
-        }
-            }
+    public boolean procuraVertice(String key) {
+        
+        for(int i = 0 ; i<this.next;i++){
+        Vertice amb = vertices[i];
+        if(amb.getNome().equals(key))
+            return true;
+      
+    }
         return false;
     }
 
@@ -92,12 +96,20 @@ public class GrafoListatAdjacencia implements IGraph {
     public void removeVertex(Vertice key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public Vertice procura(String a){
+    for(int i =0;i<next;i++){
+        Vertice amk = vertices[i];
+    if(amk.getNome().equals(a))
+        return amk;
+        }
+    return null;
+    }
 
     @Override
     public void addEdge(Vertice u, Vertice v, float data) {
         v.addAresta(u,data);
         u.addAresta(v, data);
-
     }
 
     @Override

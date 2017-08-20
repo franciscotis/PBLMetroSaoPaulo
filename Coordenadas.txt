@@ -1,0 +1,133 @@
+﻿Água Branca,275,269
+Alto do Ipiranga,421,448
+Ana Rosa,354,432
+Anhangabaú,345,321
+Antônio Gianetti,594,300
+Antônio João,120,289
+Armênia,354,243
+Artur Alvim,533,307
+Autódromo,224,545
+Baltazar Fidélis,224,148
+Barueri,110,289
+Belém,436,307
+Berrini,225,444
+Brás,414,307
+Braz Cubas,655,272
+Bresser-Mooca,426,307
+Brigadeiro,328,407
+Butantã,164,374
+Caieiras,224,171
+Calmon Viana,622,272
+Campo Limpo,153,508
+Capão Redondo,132,508
+Capuava,566,466
+Carandiru,354,221
+Carapicuíba,139,289
+Carrão,476,306
+Ceasa,214,320
+Chácara Klabin,391,448
+Cidade Jardim,225,406
+Cidade Universitária,225,346
+Clínicas,271,349
+Comandante Sampaio,168,289
+Conceição,354,515
+Consolação,290,368
+Corinthians-Itaquera,545,306
+Diadema,354,552
+Dom Bosco,556,296
+Domingos de Moraes,247,280
+Engenheiro Cardoso,62,289
+Estudantes,675,271
+Faria Lima,249,375
+Ferraz de Vasconcelos,603,291
+Francisco Morato,207,130
+Franco da Rocha,224,160
+General Miguel Costa,149,289
+Giovanni Gronchi,198,508
+Grajaú,224,564
+Granja Julieta,225,487
+Guaianases,578,306
+Guapituba,586,486
+Guilhermina-Esperança,505,307
+Hebraica-Rebouças,225,387
+Imperatriz Leopoldina,230,279
+Ipiranga,472,372
+Itapevi,51,289
+Jabaquara,354,529
+Jandira,81,289
+Jaraguá,224,205
+Jardim Belval,101,289
+Jardim São Paulo-Ayrton Senna,354,199
+Jardim Silveira,91,289
+José Bonifácio,567,295
+Júlio Prestes,311,280
+Jundiapeba,645,272
+Jurubatuba,224,534
+Lapa,263,269
+Largo Treze,238,512
+Liberdade,354,349
+Luz,354,269
+Marechal Deodoro,308,300
+Mauá,576,476
+Mogi das Cruzes,665,272
+Mooca,459,359
+Morumbi,225,464
+Osasco,177,289
+Palmeiras-Barra Funda,296,268
+Parada Inglesa,354,190
+Paraíso,354,423
+Patriarca,518,306
+Paulista,297,361
+Pedro II,384,321
+Penha,476,307
+Perus,224,182
+Pinheiros,224,374
+Piqueri,224,239
+Piraporinha,391,552
+Pirituba,224,228
+Poá,611,282
+Portuguesa-Tietê,354,233
+Praça da Árvore,354,483
+Prefeito Saladino,533,433
+Presidente Altino,187,289
+Primavera-Interlagos,224,554
+Quitaúna,158,289
+República,328,321
+Ribeirão Pires,596,496
+Rio Grande da Serra,611,511
+Sacomã,451,423
+Sagrado Coração,72,289
+Santa Cecília,317,309
+Santa Cruz,354,473
+Santa Terezinha,129,289
+Santana,354,210
+Santo Amaro,224,508
+Santo André,550,450
+Santos-Imigrantes,406,448
+São Bento,354,308
+São Bernado,430,552
+São Caetano,507,407
+São Joaquim,354,374
+São Judas,354,505
+São Mateus,595,404
+Saúde,354,494
+Sé,354,321
+Socorro,224,525
+Sônia Maria,579,421
+Sumaré,259,337
+Suzano,635,272
+Tamanduateí,480,394
+Tatuapé,476,307
+Tiradentes,354,255
+Trianon-Masp,312,390
+Tucuruvi,354,179
+Utinga,520,420
+Vergueiro,354,404
+Vila Clarice,224,216
+Vila das Belezas,176,508
+Vila Lobos-Jaguaré,225,331
+Vila Madalena,246,324
+Vila Mariana,354,462
+Vila Matilde,489,306
+Vila Olímpia,225,424
+Vila Prudente,491,378

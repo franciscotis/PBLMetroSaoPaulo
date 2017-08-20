@@ -11,7 +11,7 @@ public class Dijkstra {
 
 	Controller cont = Controller.getInstance();
 	
-	private double menorCaminho(Vertice a) {
+	private void menorCaminho(Vertice a) {
 		a.SetMindistance(0.0);
 		a.setAnt(null);
 		PriorityQueue<Vertice> verticeQueue = new PriorityQueue<Vertice>();
@@ -35,17 +35,17 @@ public class Dijkstra {
 			}
 
 		}
-		return distanciaAte;
 	}
 
 	public List<Vertice> menorCaminho(Vertice origem, Vertice destino) {
 		this.menorCaminho(origem);
 		List<Vertice> b = new ArrayList<Vertice>();
-		Vertice k = destino;
+                
 		do {
-			b.add(k);
-			k = k.getAnt();
-		} while(k != null);
+			b.add(destino);
+			destino = destino.getAnt();
+		} while(destino != null);
+                
 		Collections.reverse(b);
 		return b.contains(origem) ? b : null;
 	}
