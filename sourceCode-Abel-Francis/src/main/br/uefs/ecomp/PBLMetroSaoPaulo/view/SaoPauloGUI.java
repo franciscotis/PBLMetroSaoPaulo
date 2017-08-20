@@ -1,84 +1,75 @@
 package br.uefs.ecomp.PBLMetroSaoPaulo.view;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
 import br.uefs.ecomp.PBLMetroSaoPaulo.util.*;
-import java.awt.Graphics;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.control.RadioButton;
-import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
-public class SaoPauloGUI extends JFrame implements ActionListener{
-	 /**
-	 * 
-	 */
-	private static final long serialVersionUID = -3680689318006793620L;;
-	
-	public JLabel mSaoPaulo;
-	    public JLabel pesquisar;
-	    public JTextField texto;
-	private JFrame frame;
-	private JButton buscar;
-        String a,b;
-        JComboBox<String> entrada,saida;
+public class SaoPauloGUI extends JFrame implements ActionListener {
 
-	/**
-	 * Create the application.
-	 */
-	public SaoPauloGUI() {
-		initialize();
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = -3680689318006793620L;
+    
+    private JPanel pblMetroSaoPaulo;	
+    public JLabel mSaoPaulo;
+    public JLabel pesquisar;
+    public JTextField texto;
+    public JPanel painel;
+   // private JFrame frame;
+    private JButton buscar;
+    String a, b;
+    JComboBox<String> entrada, saida;
+    Rotulo desenho;
+    /**
+     * Create the application.
+     */
+    public SaoPauloGUI() {
+        this.setLayout(new BorderLayout());
+        initialize();
+    }
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-        
-        
-	private void initialize() {
-	setTitle("Metrô de São Paulo");
-        setSize(800,540);
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        setResizable(false);
+        setTitle("Metrô de São Paulo");
+        setSize(800, 540);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-       setLayout(new FlowLayout());
+        setLayout(new FlowLayout());
         
         Vertice[] itens = Controller.getInstance().getVertices();
         String nomes[] = new String[itens.length];
         
-        for(int i = 0 ; i<nomes.length;i++){
-        Vertice ver = itens[i];
-        nomes[i] = ver.getNome();
+        for (int i = 0; i < nomes.length; i++) {
+            Vertice ver = itens[i];
+            nomes[i] = ver.getNome();
         }
         
         entrada = new JComboBox<String>(nomes);
         saida = new JComboBox<String>(nomes);
-        JButton enviar= new JButton("Traçar rota");
+        JButton enviar = new JButton("Traçar rota");
         add(entrada);
         add(saida);
         add(enviar);
-         
         enviar.addActionListener(this);
-
-}
-
-        @Override
+        
+    }
+    
+    @Override
     public void actionPerformed(ActionEvent ae) {
         Dijkstra dequistra = new Dijkstra();
         a = (String) entrada.getSelectedItem();
@@ -86,14 +77,6 @@ public class SaoPauloGUI extends JFrame implements ActionListener{
         Vertice n = Controller.getInstance().getVertex(a);
         Vertice j = Controller.getInstance().getVertex(b);
         
-        List km = dequistra.menorCaminho(n,j);
-        Vertice k = j;
-        for(int i = 0 ; i < 10 ; i ++){
-            if(k!=null){
-            System.out.println(k.getNome());
-            k = k.getAnt();
-            }
-        }
-        
     }
+    
 }

@@ -6,48 +6,62 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
+import java.util.Stack;
 
 public class Dijkstra {
 
 	Controller cont = Controller.getInstance();
 	
-	private void menorCaminho(Vertice a) {
-		a.SetMindistance(0.0);
-		a.setAnt(null);
-		PriorityQueue<Vertice> verticeQueue = new PriorityQueue<Vertice>();
-		verticeQueue.add(a);
-		double distanciaAte = 0.0;
-		while (!verticeQueue.isEmpty()) {
-			Vertice u = verticeQueue.poll();
-			for (Aresta e : u.getAresta()) {
-                            if(e!=null){
-				Vertice v = e.getV1();
-				double peso = e.getPeso();
-				distanciaAte = u.GetMinDistance() + peso;
-				if (distanciaAte < v.GetMinDistance()) {
-					verticeQueue.remove(v);
-					v.SetMindistance(distanciaAte);
-					v.setAnt(u);
-					verticeQueue.add(v);
-
+	public Stack<Aresta> dijkstra(String v, String u) {
+		//Verifica se os vertice existem
+		if(cont.getVertex(v)!=null && cont.getVertex(u)!=null) {
+			//Armazena os visitados e suas informacoes
+			HashMap<String, Aresta> visited = new HashMap<>();
+			
+			//Armazena os que faltam visitar
+			PriorityQueue<Aresta> next = new PriorityQueue<>();
+			next.add(new Aresta(v, null, 0));
+			
+			//Verificar se tem proximo e se o destino nao foi atingido
+			while(!next.isEmpty() && !visited.containsKey(u)) {
+				//Pega as informacoes e o nome do proximo
+				Aresta info = next.remove();
+				String rem = info.getProximo();
+				
+				//Verifica se ele nao foi visitado
+				if(!visited.containsKey(rem)) {
+					visited.put(rem, info);
+					
+					//Verifica os adjacentes a ele					
+					for(String cur : getAdjacent(rem)) {												
+						//Atualiza a distancia dos adjacentes nao visitados
+						if(!visited.containsKey(cur)) {
+							double time = getEdge(rem, cur);
+							time += info.getTime();
+							next.add(new Path(cur, rem, time));
+						}
+					}
 				}
-                        }
 			}
-
-		}
+						
+			//Se o destino foi atingido retorna a pila de path, se nao null
+			return visited.containsKey(u) ? getPath(visited, v, u) : null;
+		}			
+		
+		return null;
 	}
-
-	public List<Vertice> menorCaminho(Vertice origem, Vertice destino) {
-		this.menorCaminho(origem);
-		List<Vertice> b = new ArrayList<Vertice>();
-                
-		do {
-			b.add(destino);
-			destino = destino.getAnt();
-		} while(destino != null);
-                
-		Collections.reverse(b);
-		return b.contains(origem) ? b : null;
+	
+	//Converte os visitados em uma pilha de paths
+	private Stack<Path> getPath(HashMap<String, Path> visited, String v, String u) {
+		Stack<Path> path = new Stack<>();
+				
+		while(v != u) {		
+			path.push(visited.get(u));
+			u = visited.get(u).getPrevious();			
+		}
+		
+		path.push(visited.get(v));				
+		return path;
 	}
 	
 	

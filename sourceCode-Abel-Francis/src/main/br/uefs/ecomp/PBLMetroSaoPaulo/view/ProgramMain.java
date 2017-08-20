@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
-import br.uefs.ecomp.PBLMetroSaoPaulo.util.MouseTracker;
 
 public class ProgramMain {
 
@@ -15,9 +14,10 @@ public class ProgramMain {
 	 */
 	public static void main(String[] args) {
 		//new MouseTracker().start();
+                final Controller controller = Controller.getInstance();
 		try {
-			Controller.getInstance().lerNoArquivoEInsere("MapaMetro.txt");
-			Controller.getInstance().lerArquivoCoordenadas();
+			controller.lerNoArquivoEInsere("MapaMetro.txt");
+			controller.lerArquivoCoordenadas();
 		      
 		} catch (IOException ex) {
 			Logger.getLogger(MetroSaoPaulo.class.getName()).log(Level.SEVERE, null, ex);

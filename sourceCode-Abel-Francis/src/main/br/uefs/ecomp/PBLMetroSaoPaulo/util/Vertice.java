@@ -127,9 +127,8 @@ public class Vertice {
 	public void addAresta(Vertice v2, float peso){
 		if(this.next>=aresta.length){
 			aumentaVetor();}
-                
                        if(!procuraAresta(v2.getNome())){
-                        Aresta ad = new Aresta(v2,peso);
+                        Aresta ad = new Aresta(this,v2,peso);
                         this.aresta[this.next] = ad;
 			this.next++;
 			addAdjacente(v2);
@@ -139,7 +138,7 @@ public class Vertice {
         public boolean procuraAresta(String v2){
         for(int i = 0 ; i<this.next;i++){
         Aresta amb =  this.aresta[i];
-        if(amb.getV1().getNome().equals(v2))
+        if(amb.getAnterior().getNome().equals(v2))
             return true;
         }        
 

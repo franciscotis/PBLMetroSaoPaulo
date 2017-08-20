@@ -6,51 +6,53 @@
 package br.uefs.ecomp.PBLMetroSaoPaulo.view;
 
 import br.uefs.ecomp.PBLMetroSaoPaulo.controller.Controller;
-import br.uefs.ecomp.PBLMetroSaoPaulo.util.Aresta;
 import br.uefs.ecomp.PBLMetroSaoPaulo.util.Vertice;
 import java.awt.Graphics;
-import java.awt.Point;
-import javax.swing.JButton;
+import java.util.Iterator;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.util.Hashtable;
+import javax.swing.JPanel;
 
 /**
  *
  * @author User
  */
-public class Rotulo extends JFrame{
-    public JLabel mSaoPaulo;
-    public JLabel pesquisar;
-    public JTextField texto;
-    private JButton buscar;
+public class Rotulo extends JFrame {
     
     public Rotulo() {
-        setSize(800,540);
+        this.setBounds(100, 100, 1000, 600);
+        this.setVisible(true);
     }
-	public void paint(Graphics g){
-            for(int i =0; i< Controller.getInstance().getVertices().length;i++){
-                Vertice am =  Controller.getInstance().getVertices()[i];
-                Aresta[] arestas = am.getAresta();
-               g.drawOval(am.getX(),am.getY(), 10, 10);
-               for(int j=0;j<arestas.length;j++){
-                  Aresta m = arestas[j];
-               if(m!=null && m.getV1()!=null){
-                    Vertice k = m.getV1();
-                    g.drawLine(am.getX()+6,am.getY()+6,k.getX()+6, k.getY()+6);
-                    
-                }
+
+    public void desenhar(Graphics g) {
+        Iterator v1 = Controller.getInstance().verticeIterator().iterator();
+        Iterator v2 = Controller.getInstance().verticeIterator().iterator();
+        v2.next();
+        while (v1.hasNext()) {
+            Vertice temp = (Vertice) v1.next();
+            desenhaVertice(g, temp);
+            while (v2.hasNext()) {
+                Vertice temp2 = (Vertice) v2.next();
+                if (Controller.getInstance().ehAdjacente(temp, temp2)) {
+                    this.desenhaAresta(g, temp, temp2);
                 }
             }
+            v2 = Controller.getInstance().verticeIterator().iterator();
+            v2.next();
             
         }
-        
+    }
+
+    public void paint(Graphics g) {
+        g.clearRect(0, 0, 1000, 600);
+        desenhar(g);
+    }
+
+    public void desenhaVertice(Graphics g, Vertice v1) {
+        g.fillOval(v1.getX(), v1.getY(), 7, 7);
+    }
+
+    public void desenhaAresta(Graphics g, Vertice origem, Vertice destino) {
+        g.drawLine(origem.getX(), origem.getY(), destino.getX(), destino.getY());
+    }
+
 }
