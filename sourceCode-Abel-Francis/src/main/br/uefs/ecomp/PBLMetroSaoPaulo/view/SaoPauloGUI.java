@@ -15,8 +15,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Stack;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
@@ -68,36 +71,64 @@ public class SaoPauloGUI extends JFrame implements ActionListener {
             nomes[i] = ver.getNome();
         }
         
+        
         entrada = new JComboBox<String>(nomes);
+        entrada.setFont(new Font("Arial", Font.PLAIN, 11));
+        entrada.setBackground(Color.WHITE);
         entrada.setBounds(5, 28, 130, 20);
+        
+        JLabel EstOrigem = new JLabel("ESTAÇÃO DE PARTIDA");
+	EstOrigem.setBounds(5, 8, 130, 14);
+	EstOrigem.setFont(new Font("Arial Black", Font.PLAIN, 10));
+		
         saida = new JComboBox<String>(nomes);
+        saida.setFont(new Font("Arial", Font.PLAIN, 11));
+        saida.setBackground(Color.WHITE);
         saida.setBounds(145, 28, 130, 20);
         
+        JLabel EstDestino = new JLabel("ESTAÇÃO DE DESTINO");
+	EstDestino.setBounds(145, 8, 130, 14);
+	EstDestino.setFont(new Font("Arial Black", Font.PLAIN, 10));
+        
         JRadioButton util = new JRadioButton("Dia de Semana");
-	util.setBounds(310, 30, 115, 25);
+	util.setBounds(286, 30, 115, 25);
 	util.setFont(new Font("Arial Black", Font.PLAIN, 11));
 	util.setBackground(Color.WHITE);
 	util.setVerticalAlignment(SwingConstants.TOP);
 		
 	JRadioButton feriado = new JRadioButton("Final de Semana/Feriados");
-	feriado.setBounds(431, 30, 177, 25);
+	feriado.setBounds(403, 30, 177, 25);
 	feriado.setFont(new Font("Arial Black", Font.PLAIN, 11));
 	feriado.setBackground(Color.WHITE);
 	feriado.setVerticalAlignment(SwingConstants.TOP);
         
+        JLabel tEspera = new JLabel("Tempo de espera (min)");
+	tEspera.setFont(new Font("Arial Black", Font.PLAIN, 11));
+	tEspera.setBounds(586, 35, 141, 14);
+		
+        JSpinner tempoEspera = new JSpinner();
+	tempoEspera.setBounds(737, 28, 39, 21);
+	
         JButton enviar = new JButton("Traçar Rota");
-	enviar.setBounds(624, 23, 130, 32);
+	enviar.setBounds(644, 518, 130, 32);
 	enviar.setFont(new Font("Arial Black", Font.PLAIN, 12));
 	enviar.setForeground(Color.BLACK);
 	enviar.setBackground(Color.LIGHT_GRAY);
         enviar.addActionListener(this);
         
+        
+        
+        add(EstOrigem);
+        add(EstDestino);
         add(entrada);
         add(saida);
         add(util);
         add(feriado);
+        add(tEspera);
+        add(tempoEspera);
         add(enviar);
         add(grafo);
+        
         
        }
     
@@ -110,17 +141,22 @@ public class SaoPauloGUI extends JFrame implements ActionListener {
         Vertice j = Controller.getInstance().getVertex(b);
         float tot=0;
          Stack result=dequistra.dijkstra(b,a);
+         Aresta amk = null;
+         String nome[] = new String[50];
          if(result!=null){
          for(int i=0;i<result.size();i++){
-             Aresta amk = (Aresta) result.pop();
+             amk = (Aresta) result.pop();
+             nome[i] = amk.getProximo().getNome();
              if(amk!=null){
-             //System.out.println(amk.getProximo().getNome());
-             tot = tot + amk.getPeso();
+                tot = tot + amk.getPeso();
              }
          }
             
          }
-         grafo.desenhaCaminho();
+         String nomes[] = Arrays.copyOf(nome, result.size());
+         System.out.println(nomes);
+         JOptionPane.showMessageDialog(null,nomes);
+         //grafo.desenhaCaminho();
         //System.out.println(tot);
             
     }
