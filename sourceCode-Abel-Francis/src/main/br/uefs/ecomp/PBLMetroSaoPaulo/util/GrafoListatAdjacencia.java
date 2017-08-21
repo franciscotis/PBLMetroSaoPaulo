@@ -142,4 +142,15 @@ public class GrafoListatAdjacencia implements IGraph {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public float retornaPeso(Vertice a, Vertice b) {
+        for (int i = 0; i < a.getAresta().length; i++) {
+            Aresta k = a.getAresta()[i];
+            if (k != null) {
+                if((k.getProximo().getNome().equals(a.getNome()) && k.getAnterior().equals(b.getNome())) ||(k.getProximo().getNome().equals(b.getNome()) && k.getAnterior().equals(a.getNome())) )
+                    return k.getPeso();
+                    }
+                }
+        return 0;
+    }
+
 }

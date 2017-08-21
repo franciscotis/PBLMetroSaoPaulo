@@ -106,7 +106,6 @@ public class Controller {
                 while(id.hasNext()){
                 Vertice bs = (Vertice) id.next();
                  if (bs.getNome().equals(itens2[0])) {
-                       System.out.println(bs.getNome());
                         bs.setX(cord[0]/2);
                         bs.setY(cord[1]/2);
                     }
@@ -210,5 +209,13 @@ public class Controller {
 
     public Iterable verticeIterator() {
         return this.grafo.vertexIterator();
+    }
+    
+    public boolean ehVertice(String key){
+    return grafo.procuraVertice(key);
+    }
+    
+    public float retornaPeso(Vertice a,Vertice b){
+    return grafo.retornaPeso(a, b);
     }
 }

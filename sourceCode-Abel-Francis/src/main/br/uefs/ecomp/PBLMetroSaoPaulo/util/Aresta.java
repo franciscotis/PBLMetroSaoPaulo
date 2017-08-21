@@ -15,7 +15,7 @@ public class Aresta {
     float peso;
 
     
- public Aresta(Vertice anterior,Vertice proximo ,float peso){
+ public Aresta(Vertice proximo,Vertice anterior ,float peso){
  this.anterior = anterior;
  this.proximo = proximo;
  this.peso = peso;
